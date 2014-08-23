@@ -1,4 +1,12 @@
 skin nicermediapages classic/1.0 skin/
 
-override chrome://global/skin/media/TopLevelImageDocument.css chrome://nicermediapages/skin/TopLevelImageDocument.css
-override chrome://global/skin/media/TopLevelVideoDocument.css chrome://nicermediapages/skin/TopLevelVideoDocument.css
+# Theres no 'AND' operator for "appversion" flags (bug 380401) but comparing "appversion" AND "platformversion" works to define ranges
+override chrome://global/skin/TopLevelImageDocument.css chrome://nicermediapages/skin/TopLevelImageDocument-fx14.css appversion<15
+override chrome://global/skin/TopLevelImageDocument.css chrome://nicermediapages/skin/TopLevelImageDocument.css appversion>=15 platformversion<18
+override chrome://global/skin/media/TopLevelImageDocument.css chrome://nicermediapages/skin/TopLevelImageDocument.css appversion>=18 platformversion<21
+override chrome://global/skin/media/TopLevelImageDocument.css chrome://nicermediapages/skin/TopLevelImageDocument-fx21.css appversion>=21 platformversion<22
+override chrome://global/skin/media/TopLevelImageDocument.css chrome://nicermediapages/skin/TopLevelImageDocument-fx22.css appversion>=22 platformversion<23
+override chrome://global/skin/media/TopLevelImageDocument.css chrome://nicermediapages/skin/TopLevelImageDocument.css appversion>=23
+
+override chrome://global/skin/TopLevelVideoDocument.css chrome://nicermediapages/skin/TopLevelVideoDocument.css appversion<18
+override chrome://global/skin/media/TopLevelVideoDocument.css chrome://nicermediapages/skin/TopLevelVideoDocument.css appversion>=18
