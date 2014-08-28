@@ -11,4 +11,4 @@ This includes:
 To see how this add-on looks in action head over to the add-on's homepage at Mozilla.org and check out the screen shots or simply install and try it right away.
 
 ##### Add-on homepage
-https://addons.mozilla.org/firefox/addon/nicermediapages/
+[https://addons.mozilla.org/firefox/addon/nicermediapages/](https://addons.mozilla.org/addon/nicermediapages?src=external-GitHub)
