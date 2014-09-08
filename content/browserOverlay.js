@@ -1,6 +1,4 @@
 var nicermediapages = (function() {
-	var svg;
-
 	onPageLoad = function(aEvent) {
 		var doc = aEvent.originalTarget; // doc is document that triggered "onload" event
 		
@@ -39,6 +37,7 @@ var nicermediapages = (function() {
 	};
 	
 	mouseEvent = function(aEvent) {
+		var svg = content.document.getElementById("nicermediapages-SVG");
 		if (aEvent.type == "mouseover" && aEvent.target.id != "nicermediapages-SVG") {
 			svg.classList.add("hovered");
 		}
