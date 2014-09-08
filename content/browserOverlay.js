@@ -7,7 +7,7 @@ var nicermediapages = (function() {
 			return;
 		}
 
-		svg = doc.documentElement;
+		var svg = doc.documentElement;
 		svg.setAttribute("id", "nicermediapages-SVG");
 		var viewBox = svg.viewBox;
 		
@@ -19,7 +19,8 @@ var nicermediapages = (function() {
 		var body = doc.createElementNS("http://www.w3.org/1999/xhtml", "body");
 		body.setAttribute("id", "nicermediapages-body");
 		// adjust position and scaling of the "foreignObject" if the SVG's size is manipulated using the viewBox attribute
-		if (viewBox && viewBox.baseVal) {
+		// check for "viewBox.baseVal.width != 0" needed for compatibility with older Firefox versions < 22 (bugs 888307 and 785606)
+		if (viewBox && viewBox.baseVal && viewBox.baseVal.width != 0) {
 			var mx = viewBox.baseVal.width / svg.width.baseVal.value;
 			var my = viewBox.baseVal.height / svg.height.baseVal.value;
 			var m = Math.max(mx,my);
