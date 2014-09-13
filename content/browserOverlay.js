@@ -14,8 +14,8 @@ var nicermediapages = (function() {
 		// add a "foreignObject" element with 100% width/height to the bottom of the SVG
 		// to the contained "body" element we can apply all necessary customizations
 		var rect = doc.createElementNS("http://www.w3.org/2000/svg", "foreignObject");
-		rect.setAttribute("width", svg.width.baseVal.valueAsString);
-		rect.setAttribute("height", svg.height.baseVal.valueAsString);
+		rect.setAttribute("width", svg.width.baseVal.value);
+		rect.setAttribute("height", svg.height.baseVal.value);
 		var body = doc.createElementNS("http://www.w3.org/1999/xhtml", "body");
 		body.setAttribute("id", "nicermediapages-body");
 		// adjust position and scaling of the "foreignObject" if the SVG's size is manipulated using the viewBox attribute
