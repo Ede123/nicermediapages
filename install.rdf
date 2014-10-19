@@ -8,6 +8,7 @@
 	<em:version>2.1</em:version>
 	<em:description>More pleasing look for Firefox media pages.</em:description>
 	<em:type>2</em:type>
+	<em:bootstrap>true</em:bootstrap>
 	<em:multiprocessCompatible>true</em:multiprocessCompatible>
 	
 	<em:targetApplication>

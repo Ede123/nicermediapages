@@ -1,9 +1,6 @@
 content		nicermediapages						content/
 skin		nicermediapages 	classic/1.0		skin/
 
-# The browser overlay
-overlay		chrome://browser/content/browser.xul					chrome://nicermediapages/content/browserOverlay.xul
-
 # Overrides for "TopLevelImageDocument.css"
 # notice there''s no 'AND' operator for "appversion" flags (bug 380401) but comparing "appversion" AND "platformversion" works to define ranges
 override	chrome://global/skin/TopLevelImageDocument.css			chrome://nicermediapages/skin/TopLevelImageDocument-fx14.css	appversion<15
