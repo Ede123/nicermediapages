@@ -3,14 +3,6 @@ var nicermediapages = (function() {
 	initSVG = function() {
 		var doc = content.document;
 
-		// register the style sheet for SVGs
-		var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"]
-							.getService(Components.interfaces.nsIStyleSheetService);
-		var ios = Components.classes["@mozilla.org/network/io-service;1"]
-							.getService(Components.interfaces.nsIIOService);
-		var uri = ios.newURI("chrome://nicermediapages/skin/TopLevelSVGDocument.css", null, null);
-		sss.loadAndRegisterSheet(uri, sss.USER_SHEET);
-
 		// get SVG root element
 		var svg = doc.documentElement;
 		svg.setAttribute("id", "nicermediapages-SVG");
