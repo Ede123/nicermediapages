@@ -5,7 +5,6 @@ var nicermediapages = (function() {
 
 		// get SVG root element
 		var svg = doc.documentElement;
-		svg.setAttribute("id", "nicermediapages-SVG");
 		var viewBox = svg.viewBox;
 
 		// add a "foreignObject" element with 100% width/height to the bottom of the SVG
@@ -14,7 +13,6 @@ var nicermediapages = (function() {
 		rect.setAttribute("width", svg.width.baseVal.value);
 		rect.setAttribute("height", svg.height.baseVal.value);
 		var body = doc.createElementNS("http://www.w3.org/1999/xhtml", "body");
-		body.setAttribute("id", "nicermediapages-body");
 		// adjust position and scaling of the "foreignObject" if the SVG's size is manipulated using the viewBox attribute
 		// check for "viewBox.baseVal.width != 0" needed for compatibility with older Firefox versions < 22 (bugs 888307 and 785606)
 		if (viewBox && viewBox.baseVal && viewBox.baseVal.width != 0) {
@@ -35,11 +33,11 @@ var nicermediapages = (function() {
 	};
 	
 	mouseEvent = function(aEvent) {
-		var svg = content.document.getElementById("nicermediapages-SVG");
-		if (aEvent.type == "mouseover" && aEvent.target.id != "nicermediapages-SVG") {
+		var svg = content.document.getElementsByClassName("nicermediapages-SVG")[0];
+		if (aEvent.type == "mouseover" && !aEvent.target.classList.contains("nicermediapages-SVG")) {
 			svg.classList.add("hovered");
 		}
-		else if (aEvent.type == "mouseout" && aEvent.target.id != "nicermediapages-SVG") {
+		else if (aEvent.type == "mouseout" && !aEvent.target.classList.contains("nicermediapages-SVG")) {
 			svg.classList.remove("hovered");
 		}
 	};
@@ -48,13 +46,28 @@ var nicermediapages = (function() {
 	// public functions
 	return {
 		init: function(aEvent) {
-			// only initialize if document is an SVG file
-			if (content.document.documentElement.tagName === "svg") {
+			// only act when "interactive" (document has finished parsing)
+			// ignore "complete" (document has finished loading)
+			if (content.document.readyState != "interactive") {
+				return;
+			}
+			
+			// if loaded document is an SVG/Image/Video/ document
+			// add the respective class names and do any necessary initializing
+			if (content.document.contentType.indexOf("image/svg") == 0) /* SVG Document */ {
+				content.document.documentElement.classList.add("nicermediapages-SVG");
 				initSVG();
+			} else if (content.document.contentType.indexOf("image/") == 0) /* Image Document */  {
+				content.document.documentElement.classList.add("nicermediapages-Image");
+			} else if (content.document.contentType.indexOf("video/") == 0) /* Video Document */  {
+				content.document.documentElement.classList.add("nicermediapages-Video");
 			}
 		}
 	};
 
 })();
 
-addEventListener("DOMContentLoaded", nicermediapages.init, true);
+// add event listener for page load
+//   "DOMContentLoaded" does not fire on Image/Video Documents for some reason,
+//   therefore use "readystatechange" with readyState == "interactive"
+addEventListener("readystatechange", nicermediapages.init, true);

@@ -10,9 +10,9 @@ function startup(data,reason) {
 	// register style sheets
 	var sss = Cc["@mozilla.org/content/style-sheet-service;1"].getService(Ci.nsIStyleSheetService);
 	var ios = Cc["@mozilla.org/network/io-service;1"].getService(Ci.nsIIOService);
-	var uri = ios.newURI("chrome://nicermediapages/skin/TopLevelSVGDocument.css?" + startupTime, null, null);
-	if (!sss.sheetRegistered(uri, sss.USER_SHEET)) {
-		sss.loadAndRegisterSheet(uri, sss.USER_SHEET);
+	var uri = ios.newURI("chrome://nicermediapages/skin/nicermediapages.css?" + startupTime, null, null);
+	if (!sss.sheetRegistered(uri, sss.AUTHOR_SHEET)) {
+		sss.loadAndRegisterSheet(uri, sss.AUTHOR_SHEET);
 	}
 
 	// register frame script in global message manager (e10s compatibility; gets loaded into every <browser> in every chrome window)
@@ -32,9 +32,9 @@ function shutdown(data,reason) {
 	// unregister style sheets
 	var sss = Cc["@mozilla.org/content/style-sheet-service;1"].getService(Ci.nsIStyleSheetService);
 	var ios = Cc["@mozilla.org/network/io-service;1"].getService(Ci.nsIIOService);
-	var uri = ios.newURI("chrome://nicermediapages/skin/TopLevelSVGDocument.css?" + startupTime, null, null);
-	if (sss.sheetRegistered(uri, sss.USER_SHEET)) {
-		sss.unregisterSheet(uri, sss.USER_SHEET);
+	var uri = ios.newURI("chrome://nicermediapages/skin/nicermediapages.css?" + startupTime, null, null);
+	if (sss.sheetRegistered(uri, sss.AUTHOR_SHEET)) {
+		sss.unregisterSheet(uri, sss.AUTHOR_SHEET);
 	}
 	
 	// unregister frame script in global message manager
