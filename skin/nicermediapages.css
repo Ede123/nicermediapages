@@ -7,7 +7,7 @@
 	.nicermediapages-Video body,
 	.nicermediapages-SVG
 	{
-		background: #333; 
+		background: #333;
 	}
 
 	/* consistent drop shadows for all media */
@@ -15,12 +15,12 @@
 	.nicermediapages-Video video,
 	.nicermediapages-SVG
 	{
-		box-shadow: 0 0 15px #000; 
+		box-shadow: 0 0 15px #000;
 	}
-	
-	
+
+
 /* STYLES FOR TRANSPARENT IMAGE/SVG PAGES */
-	
+
 	/* pure white background for (transparent) images */
 	.nicermediapages-Image img.decoded,
 	.nicermediapages-SVG body

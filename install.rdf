@@ -2,7 +2,7 @@
 
 <RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:em="http://www.mozilla.org/2004/em-rdf#">
 <Description about="urn:mozilla:install-manifest">
-	
+
 	<em:id>nicermediapages@ede123</em:id>
 	<em:name>Nicer Media Pages</em:name>
 	<em:version>2.1</em:version>
@@ -10,7 +10,7 @@
 	<em:type>2</em:type>
 	<em:bootstrap>true</em:bootstrap>
 	<em:multiprocessCompatible>true</em:multiprocessCompatible>
-	
+
 	<em:targetApplication>
 	<Description>
 		<!-- Firefox -->
@@ -19,5 +19,6 @@
 		<em:maxVersion>35.*</em:maxVersion>
 	</Description>
 	</em:targetApplication>
+
 </Description>
 </RDF>
