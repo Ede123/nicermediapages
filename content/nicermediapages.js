@@ -48,13 +48,16 @@ var nicermediapages = (function() {
 		init: function() {
 			// if loaded document is an SVG/Image/Video/ document
 			// add the respective class names and do any necessary initializing
-			if (content.document.contentType.indexOf("image/svg") === 0) /* SVG Document */ {
-				content.document.documentElement.classList.add("nicermediapages-SVG");
-				initSVG();
-			} else if (content.document.contentType.indexOf("image/") === 0) /* Image Document */  {
-				content.document.documentElement.classList.add("nicermediapages-Image");
-			} else if (content.document.contentType.indexOf("video/") === 0) /* Video Document */  {
-				content.document.documentElement.classList.add("nicermediapages-Video");
+			var doc = content.document;
+			if (doc.contentType.indexOf("image/svg") === 0) /* SVG Document */ {
+				if (doc.URL.indexOf("view-source:") === -1) { // prevent modifying "view source" page
+					doc.documentElement.classList.add("nicermediapages-SVG");
+					initSVG();
+				}
+			} else if (doc.contentType.indexOf("image/") === 0) /* Image Document */  {
+				doc.documentElement.classList.add("nicermediapages-Image");
+			} else if (doc.contentType.indexOf("video/") === 0) /* Video Document */  {
+				doc.documentElement.classList.add("nicermediapages-Video");
 			}
 		}
 	};
