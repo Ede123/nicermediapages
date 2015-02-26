@@ -11,7 +11,7 @@
 	}
 
 	/* consistent drop shadows for all media */
-	.nicermediapages-Image img.decoded,
+	.nicermediapages-Image img,
 	.nicermediapages-Video video,
 	.nicermediapages-SVG
 	{
@@ -22,6 +22,7 @@
 /* STYLES FOR TRANSPARENT IMAGE/SVG PAGES */
 
 	/* pure white background for (transparent) images */
+	.nicermediapages-Image img.transparent,
 	.nicermediapages-Image img.decoded,
 	.nicermediapages-SVG body
 	{
@@ -29,6 +30,7 @@
 	}
 
 	/* checkerboard background for (transparent) images on hover */
+	.nicermediapages-Image img.transparent:hover,
 	.nicermediapages-Image img.decoded:hover,
 	.nicermediapages-SVG.hovered body
 	{
