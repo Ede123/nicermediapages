@@ -16,6 +16,7 @@
 	"content_scripts": [{
 		"matches": ["<all_urls>"],
 		"css": ["skin/nicermediapages.css"],
-		"js": ["content/nicermediapages.js"]
+		"js": ["content/nicermediapages.js"],
+		"run_at": "document_end"
 	}]
 }

@@ -60,18 +60,6 @@ var nicermediapages = (function() {
 
 }());
 
-// add an event listener that fires (and initiates the add-on) when a new document is loaded
-// (since "DOMContentLoaded" does not fire on Image/Video Documents for some reason use "readystatechange")
-addEventListener("readystatechange", function () {
-	// initiate when readyState becomes "interactive" (document has finished parsing)
-	// ignore readyState subsequently reaching "complete" (document has finished loading)
-	//   since we would unnecessarily initiate a second time otherwise
-	if (document.readyState === "interactive") {
-		nicermediapages.init();
-	}
-}, true);
-
-// initiate the add-on on already loaded pages right away
-if (document.readyState === "complete") {
-	nicermediapages.init();
-}
+// This script now runs at the "interactive" (or "complete") DOM state,
+// because the "run_at" manifest.json key was set to "document_end"
+nicermediapages.init();
