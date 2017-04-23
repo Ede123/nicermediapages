@@ -4,7 +4,8 @@
 	"name": "Nicer Media Pages",
 	"version": "4.0",
 	"author": "Eduard Braun",
-	"description": "More pleasing look for Firefox media pages. \r\nPorted to a WebExtension by ExE Boss.",
+	"description": "More pleasing look for Firefox media pages.",
+	"homepage_url": "https://addons.mozilla.org/firefox/addon/nicermediapages",
 
 	"content_scripts": [{
 		"matches": ["<all_urls>"],
