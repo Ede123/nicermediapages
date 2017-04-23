@@ -1,12 +1,6 @@
 {
-	"applications": {
-		"gecko": {
-			"id": "nicermediapages@ede123",
-			"strict_min_version": "45.0"
-		}
-	},
-
 	"manifest_version": 2,
+
 	"name": "Nicer Media Pages",
 	"version": "4.0",
 	"author": "Eduard Braun",
@@ -17,5 +11,12 @@
 		"css": ["skin/nicermediapages.css"],
 		"js": ["content/nicermediapages.js"],
 		"run_at": "document_end"
-	}]
+	}],
+
+	"applications": {
+		"gecko": {
+			"id": "nicermediapages@ede123",
+			"strict_min_version": "45.0"
+		}
+	}
 }
