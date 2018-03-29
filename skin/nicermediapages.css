@@ -15,22 +15,27 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+/** Ensure that the .nicermediapages-* classes only affect the correct documents */
+@namespace url('http://www.w3.org/1999/xhtml');
+@namespace svg url('http://www.w3.org/2000/svg');
+
 @media not print {
 
 /* COMMON STYLES FOR ALL MEDIA PAGES */
 
 	/* consistent background color for all media pages */
-	.nicermediapages-Image body,
-	.nicermediapages-Video body,
-	.nicermediapages-SVG
+	.nicermediapages-Image:root body,
+	.nicermediapages-Video:root body,
+	svg|*.nicermediapages-SVG:root
 	{
 		background: #333;
 	}
 
 	/* consistent drop shadows for all media */
-	.nicermediapages-Image img,
-	.nicermediapages-Video video,
-	.nicermediapages-SVG
+	.nicermediapages-Image:root img,
+	.nicermediapages-Video:root video,
+	svg|*.nicermediapages-SVG:root
 	{
 		box-shadow: 0 0 15px #000;
 	}
@@ -39,17 +44,17 @@
 /* STYLES FOR TRANSPARENT IMAGE/SVG PAGES */
 
 	/* pure white background for (transparent) images */
-	.nicermediapages-Image img.transparent,
-	.nicermediapages-Image img.decoded,
-	.nicermediapages-SVG body
+	.nicermediapages-Image:root img.transparent,
+	.nicermediapages-Image:root img.decoded,
+	svg|*.nicermediapages-SVG:root body
 	{
 		background: #fff;
 	}
 
 	/* checkerboard background for (transparent) images on hover */
-	.nicermediapages-Image img.transparent:hover,
-	.nicermediapages-Image img.decoded:hover,
-	.nicermediapages-SVG.hovered body
+	.nicermediapages-Image:root img.transparent:hover,
+	.nicermediapages-Image:root img.decoded:hover,
+	svg|*.nicermediapages-SVG:root.hover body
 	{
 		background-image: url('checkerboard.svg'); /* checkerboard background image (white and transparent squares) */
 		background-color: #ddd; /* light gray background (determines the color of transparent squares above) */
@@ -59,7 +64,7 @@
 /* LAYOUT FOR SVG PAGES */
 
 	/* center SVGs */
-	.nicermediapages-SVG {
+	svg|*.nicermediapages-SVG:root {
 		text-align: center;
 		position: absolute;
 		margin: auto;
@@ -70,7 +75,7 @@
 	}
 
 	/* stretch body of foreignObject to fit dimensions of SVG */
-	.nicermediapages-SVG body {
+	svg|*.nicermediapages-SVG body {
 		width: 100%;
 		height: 100%;
 		margin: 0;
