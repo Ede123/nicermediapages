@@ -81,4 +81,7 @@
 		margin: 0;
 	}
 
+	svg|*.nicermediapages-SVG:root.overflowingVertical {
+		margin-top: 0;
+	}
 }

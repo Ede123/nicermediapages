@@ -16,9 +16,17 @@
  */
 "use strict";
 const nicermediapages = (() => {
-	const initSVG = () => {
-		// Get the SVG root element
-		const svg = document.documentElement;
+	/**
+	 * Initialize Nicer Media Pages for the SVG Document.
+	 *
+	 * @param	{SVGElement|Element}	svg	The SVG Document’s root element
+	 */
+	const initSVG = (svg) => {
+		if (svg.classList.contains("nicermediapages-SVG")) {
+			// Prevent initialing twice.
+			return;
+		}
+		svg.classList.add("nicermediapages-SVG");
 		const viewBox = svg.viewBox;
 
 		// Add a "foreignObject" element with 100% width/height to the bottom of the SVG
@@ -29,19 +37,43 @@ const nicermediapages = (() => {
 		const body = document.createElementNS("http://www.w3.org/1999/xhtml", "body");
 
 		// Adjust position and scaling of the "foreignObject" if the SVG's size is manipulated using the viewBox attribute
+		let m = 1;
 		if (viewBox && viewBox.baseVal) {
 			const mx = viewBox.baseVal.width / svg.width.baseVal.value;
 			const my = viewBox.baseVal.height / svg.height.baseVal.value;
-			const m = Math.max(mx,my);
+			m = Math.max(mx,my);
 			rect.setAttribute("x", (viewBox.baseVal.width/2 + viewBox.baseVal.x) / m - svg.width.baseVal.value/2);
 			rect.setAttribute("y", (viewBox.baseVal.height/2 + viewBox.baseVal.y) / m - svg.height.baseVal.value/2);
 			rect.setAttribute("transform", "scale(" + m + ")");
 		}
+		// Workaround for a Firefox bug where using only the viewBox attribute causes
+		// the root <svg> element to fill the screen and cause other issues.
+		if (!svg.hasAttribute("width")) {
+			svg.setAttribute("width", svg.width.baseVal.value * m);
+		}
+		if (!svg.hasAttribute("height")) {
+			svg.setAttribute("height", svg.height.baseVal.value * m);
+		}
+
 		// Add the elements
 		rect.appendChild(body);
 		svg.insertBefore(rect, svg.firstChild);
 
-		// Add event listeners to implement transparency on hover
+		// Add event listeners
+		const resizeEvent = (event) => {
+			if (window.innerHeight < svg.height.baseVal.value) {
+				svg.classList.add("overflowingVertical");
+			} else {
+				svg.classList.remove("overflowingVertical");
+			}
+		};
+		window.addEventListener("resize", resizeEvent, {capture: true, passive: true});
+
+		/**
+		 * The event listener implementing transparency on hover
+		 *
+		 * @param	{MouseEvent}	event The event.
+		 */
 		const mouseEvent = (event) => {
 			if (!event.target.classList.contains("nicermediapages-SVG")) {
 				switch (event.type) {
@@ -68,8 +100,7 @@ const nicermediapages = (() => {
 		// add the respective class names and do any necessary initializing
 		if (document.contentType.indexOf("image/svg") === 0) /* SVG Document */ {
 			if (window.location.protocol !== "view-source:") { // prevent modifying "view source" page
-				document.documentElement.classList.add("nicermediapages-SVG");
-				initSVG();
+				initSVG(document.documentElement);
 			}
 		} else if (document.contentType.indexOf("image/") === 0) /* Image Document */  {
 			document.documentElement.classList.add("nicermediapages-Image");
